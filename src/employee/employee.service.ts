@@ -24,8 +24,8 @@ export class EmployeeService {
     return `This action returns a #${id} employee`;
   }
 
-  update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return `This action updates a #${id} employee`;
+  async update(id: string, updateEmployeeDto: UpdateEmployeeDto) {
+    return await this.employeeModel.updateOne({ _id: id }, { $set: updateEmployeeDto });
   }
 
   remove(id: number) {

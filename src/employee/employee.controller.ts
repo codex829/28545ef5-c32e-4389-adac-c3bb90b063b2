@@ -32,8 +32,6 @@ export class EmployeeController {
     };
 
     return response;
-
-    // return this.employeeService.findAll();
   }
 
   @Get(':id')
@@ -42,8 +40,15 @@ export class EmployeeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto) {
-    return this.employeeService.update(+id, updateEmployeeDto);
+  async update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDto) {
+    let updateResult = await this.employeeService.update(id, updateEmployeeDto);
+
+    let response = {
+      status: "success",
+      message: "Employee data has been successfully updated"
+    };
+
+    return response;
   }
 
   @Delete(':id')
