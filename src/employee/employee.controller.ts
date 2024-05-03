@@ -22,8 +22,18 @@ export class EmployeeController {
   }
 
   @Get()
-  findAll() {
-    return this.employeeService.findAll();
+  async findAll() {
+
+    let employeeData: Employee[] = await this.employeeService.findAll();
+
+    let response = {
+      status: "success",
+      data: employeeData
+    };
+
+    return response;
+
+    // return this.employeeService.findAll();
   }
 
   @Get(':id')

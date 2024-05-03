@@ -15,8 +15,9 @@ export class EmployeeService {
     return createdEmployee;
   }
 
-  findAll() {
-    return `This action returns all employee`;
+  async findAll() {
+    let result = await this.employeeModel.find();
+    return result;
   }
 
   findOne(id: number) {
